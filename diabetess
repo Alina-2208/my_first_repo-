@@ -1,0 +1,43 @@
+**Import the library**
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.express as px
+from plotly.offline import iplot, plot
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+**Import file from kaggle**
+
+from google.colab import files
+
+# Upload kaggle.json
+files.upload()
+
+
+!mkdir -p ~/.kaggle
+!cp kaggle.json ~/.kaggle/
+!chmod 600 ~/.kaggle/kaggle.json
+
+
+import kagglehub
+path=kagglehub.dataset_download("uciml/pima-indians-diabetes-database")
+print("Path to dataset files: ", path)
+
+**Loading dataset**
+
+df = pd.read_csv("/kaggle/input/pima-indians-diabetes-database/diabetes.csv")  # adjust filename as per the zip contents
+print("First five data ")
+df.head()
+
+#to show last 5 row of dataset
+df.tail()
+
+**CHECKING DUPLICATE**
+
+df["BloodPressure"].duplicated().sum()
+
+**Check Missing Value**
+
+df.isnull().sum()
